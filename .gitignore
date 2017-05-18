@@ -57,3 +57,10 @@ typings/
 # dotenv environment variables file
 .env
 
+.DS_Store
+.idea/
+dist/
+npm-debug.log
+build/
+happyfri/
+src/
