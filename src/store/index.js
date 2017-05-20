@@ -12,7 +12,7 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  level: '第一周', // 按官网说的，state最好有初始化
+  level: '第一周',
   itemNum: 1,
   allTime: 0,
   timer: '',
