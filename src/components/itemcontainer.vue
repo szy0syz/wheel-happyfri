@@ -47,8 +47,8 @@
     methods: {
       nextItem: function () {
         if (this.choosedNum !== null) {
-          this.choosedNum = null;
-          this.$store.dispatch('addNum', this.choosedId)
+          this.choosedNum = null; // 清除上一题答案
+          this.$store.dispatch('addNum', this.choosedId) // 先提交答案，然后看还有题目没，有就itemNum+1，因为是计算属性，则题目会自动加载下一题
         } else {
           alert('您还没有选择答案哦')
         }
@@ -66,23 +66,23 @@
         }
       },
       choosed: function (type, id) {
-        this.choosedNum = type;
-        this.choosedId = id;
+        this.choosedNum = type; // A:1, B:2...
+        this.choosedId = id;   // answer_id 唯一的
       },
       submitAnswer: function () {
-        if (this.choosedNum !== null) {
-          this.$store.dispatch('addNum', this.choosedId)
-          clearInterval(this.$store.state.timer)
-          this.$router.push('score')
+        if (this.choosedNum !== null) { // 所选答案不能为null
+          this.$store.dispatch('addNum', this.choosedId) // 提交最后一题答案
+          clearInterval(this.$store.state.timer) // 清除计时器
+          this.$router.push('score') // 路由去score
         } else {
           alert('您还没有选择答案哦')
         }
       },
     },
     created(){
-      this.$store.dispatch('initializeData');
+      this.$store.dispatch('initializeData'); // 初始化题目指针itemNum=1，清计时器
       if (this.$store.state.itemDetail.length == 0) {
-        this.$store.dispatch('getData');
+        this.$store.dispatch('getData'); // 没data就远程geData，先远程，失败就默认题目组
       }
       document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
     }
